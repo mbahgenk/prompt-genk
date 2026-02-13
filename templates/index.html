@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>PROMPT GENK - Veo 3 (Simple)</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b4a, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 5px;
+        }
+        .sub {
+            color: #aaa;
+            margin-bottom: 25px;
+            font-size: 14px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+        .section {
+            background: #252525;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff6b4a;
+        }
+        .section h3 {
+            margin: 0 0 15px 0;
+            color: #ffb347;
+            font-size: 18px;
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .col {
+            flex: 1;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #ccc;
+            font-size: 13px;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff6b4a;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .tip {
+            background: #2a2a2a;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #aaa;
+            border-left: 3px solid #ffb347;
+            margin: 10px 0;
+        }
+        .tip strong {
+            color: #ffb347;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff6b4a, #ffb347);
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 15px 0;
+        }
+        button:hover {
+            transform: scale(1.02);
+        }
+        .result-area {
+            background: #0a0a0a;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #333;
+            margin-top: 20px;
+            display: none;
+        }
+        pre {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            color: #ffb347;
+            font-size: 13px;
+            border: 1px solid #333;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .button-group button {
+            flex: 1;
+            margin: 0;
+            padding: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 PROMPT GENK</h1>
+        <div class="sub">Veo 3 Simple — 3 pilihan aja, tinggal gaskeun!</div>
+
+        <form id="promptForm">
+            <!-- SHOT & CAMERA (SEDERHANA) -->
+            <div class="section">
+                <h3>🎥 1. SHOT & CAMERA</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Shot Type</label>
+                            <select id="shot_type">
+                                <option value="Wide">Wide (lingkungan + karakter)</option>
+                                <option value="Medium" selected>Medium (pinggang ke atas)</option>
+                                <option value="Close Up">Close Up (wajah/detail)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Camera Angle</label>
+                            <select id="camera_angle">
+                                <option value="Eye Level" selected>Eye Level (natural)</option>
+                                <option value="Low Angle">Low Angle (karakter kuat)</option>
+                                <option value="High Angle">High Angle (karakter kecil)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Camera Movement</label>
+                            <select id="camera_movement">
+                                <option value="Static" selected>Static (diam)</option>
+                                <option value="Slow Dolly">Slow Dolly (mendekat)</option>
+                                <option value="Tracking">Tracking (mengikuti)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Lens</label>
+                            <select id="lens">
+                                <option value="35mm">35mm (sinematik)</option>
+                                <option value="50mm" selected>50mm (natural)</option>
+                                <option value="85mm">85mm (portrait blur)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="tip">
+                    <strong>💡 Tip:</strong> "Slow dolly + 85mm" cocok untuk momen intim.
+                </div>
+            </div>
+
+            <!-- MODEL 1 (WAJIB) -->
+            <div class="section">
+                <h3>👤 2. MODEL UTAMA</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Nama Model</label>
+                            <input type="text" id="model1_name" placeholder="Contoh: Sarah" value="Sarah">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <input type="text" id="model1_desc" placeholder="Contoh: wanita 25 tahun" value="wanita 28 tahun, rambut panjang">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pakaian</label>
+                    <input type="text" id="model1_clothing" placeholder="Contoh: kaos putih" value="kaos putih, jaket denim">
+                </div>
+            </div>
+
+            <!-- MODEL 2 (OPSIONAL) -->
+            <div class="section">
+                <h3>👥 3. MODEL KEDUA (opsional)</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" id="model2_name" placeholder="Contoh: Budi" value="Budi">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <input type="text" id="model2_desc" placeholder="Contoh: pria 30 tahun" value="pria 30 tahun">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pakaian</label>
+                    <input type="text" id="model2_clothing" placeholder="Contoh: kemeja flanel" value="kemeja flanel">
+                </div>
+            </div>
+
+            <!-- DIALOG -->
+            <div class="section">
+                <h3>💬 4. DIALOG</h3>
+                <div class="tip">
+                    <strong>⚠️ Penting:</strong> Format Nama: "dialog" (pakai titik dua)
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Dialog Model 1</label>
+                            <textarea id="dialog1" rows="2">"Halo, apa kabar?"</textarea>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Dialog Model 2</label>
+                            <textarea id="dialog2" rows="2">"Baik, terima kasih!"</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCENE -->
+            <div class="section">
+                <h3>📍 5. LOKASI & AKSI</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Tempat</label>
+                            <input type="text" id="tempat" placeholder="coffee shop" value="coffee shop">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Detail</label>
+                            <input type="text" id="detail_tempat" placeholder="meja kayu" value="meja kayu dekat jendela">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Adegan / Aksi</label>
+                    <input type="text" id="adegan" placeholder="minum kopi" value="minum kopi sambil tersenyum">
+                </div>
+            </div>
+
+            <!-- VISUAL -->
+            <div class="section">
+                <h3>🎨 6. SUASANA</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Lighting</label>
+                            <input type="text" id="lighting" placeholder="soft natural light" value="soft natural light">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Suasana</label>
+                            <input type="text" id="suasana" placeholder="hangat" value="hangat dan tenang">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Gaya Visual</label>
+                    <input type="text" id="gaya_visual" placeholder="cinematic" value="cinematic, shallow depth of field">
+                </div>
+            </div>
+
+            <!-- AUDIO -->
+            <div class="section">
+                <h3>🎵 7. AUDIO</h3>
+                <div class="form-group">
+                    <label>Deskripsi Audio</label>
+                    <textarea id="audio_desc" rows="2">suara mesin kopi, percakapan pelan, musik jazz lembut</textarea>
+                </div>
+            </div>
+
+            <button type="button" onclick="generatePrompt()">✨ GENERATE PROMPT</button>
+        </form>
+
+        <div id="resultArea" class="result-area">
+            <h3 style="margin:0 0 10px 0; color:#ffb347;">📋 HASIL PROMPT:</h3>
+            <pre id="promptResult"></pre>
+            <div class="button-group">
+                <button onclick="copyPrompt()">📋 COPY</button>
+                <button onclick="downloadPrompt()">💾 DOWNLOAD</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastPrompt = '';
+
+        async function generatePrompt() {
+            const formData = new FormData();
+            
+            // Shot & Camera
+            formData.append('shot_type', document.getElementById('shot_type').value);
+            formData.append('camera_angle', document.getElementById('camera_angle').value);
+            formData.append('camera_movement', document.getElementById('camera_movement').value);
+            formData.append('lens', document.getElementById('lens').value);
+            
+            // Model 1
+            formData.append('model1_name', document.getElementById('model1_name').value);
+            formData.append('model1_desc', document.getElementById('model1_desc').value);
+            formData.append('model1_clothing', document.getElementById('model1_clothing').value);
+            
+            // Model 2
+            formData.append('model2_name', document.getElementById('model2_name').value);
+            formData.append('model2_desc', document.getElementById('model2_desc').value);
+            formData.append('model2_clothing', document.getElementById('model2_clothing').value);
+            
+            // Dialog
+            formData.append('dialog1', document.getElementById('dialog1').value);
+            formData.append('dialog2', document.getElementById('dialog2').value);
+            
+            // Scene
+            formData.append('tempat', document.getElementById('tempat').value);
+            formData.append('detail_tempat', document.getElementById('detail_tempat').value);
+            formData.append('adegan', document.getElementById('adegan').value);
+            
+            // Visual
+            formData.append('lighting', document.getElementById('lighting').value);
+            formData.append('suasana', document.getElementById('suasana').value);
+            formData.append('gaya_visual', document.getElementById('gaya_visual').value);
+            
+            // Audio
+            formData.append('audio_desc', document.getElementById('audio_desc').value);
+
+            try {
+                const response = await fetch('http://localhost:8000/generate-prompt', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    lastPrompt = data.prompt;
+                    document.getElementById('promptResult').textContent = data.prompt;
+                    document.getElementById('resultArea').style.display = 'block';
+                } else {
+                    alert('Error: ' + JSON.stringify(data));
+                }
+            } catch (err) {
+                alert('Gagal konek ke server. Pastikan backend jalan.');
+            }
+        }
+
+        function copyPrompt() {
+            navigator.clipboard.writeText(lastPrompt);
+            alert('✅ Prompt dicopy!');
+        }
+
+        function downloadPrompt() {
+            const blob = new Blob([lastPrompt], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'prompt.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
